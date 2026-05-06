@@ -1,7 +1,7 @@
 use std::fs::{read_to_string, write};
 
-pub const EXPRESS_PACKAGE_JSON_PATH: &str = "templates/express/package.json";
-pub const EXPRESS_INDEX_JS_PATH: &str = "templates/express/index.js";
+pub const EXPRESS_PACKAGE_JSON_PATH: &str = "src/templates/express/package.json";
+pub const EXPRESS_INDEX_JS_PATH: &str = "src/templates/express/index.js";
 
 pub fn generate_all(project_name: &str) -> std::io::Result<()> {
     create_from_template(
