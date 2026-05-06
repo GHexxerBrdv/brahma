@@ -1,32 +1,52 @@
-use std::fs::{read_to_string, write};
+use include_dir::{include_dir, Dir};
+use std::fs;
 
-pub const EXPRESS_PACKAGE_JSON_PATH: &str = "src/templates/express/package.json";
-pub const EXPRESS_INDEX_JS_PATH: &str = "src/templates/express/index.js";
+static TEMPLATES_DIR: Dir<'_> = include_dir!("templates");
 
 pub fn generate_all(project_name: &str) -> std::io::Result<()> {
-    create_from_template(
-        EXPRESS_PACKAGE_JSON_PATH,
+    // Generate package.json
+    write_template(
+        "express/package.json",
         &format!("{}/package.json", project_name),
         project_name,
     )?;
 
-    // index.js
-    create_from_template(
-        EXPRESS_INDEX_JS_PATH,
+    // Generate index.js
+    write_template(
+        "express/index.js",
         &format!("{}/src/index.js", project_name),
+        project_name,
+    )?;
+
+    // Generate .gitignore
+    write_template(
+        "express/gitignore",
+        &format!("{}/.gitignore", project_name),
         project_name,
     )?;
 
     Ok(())
 }
 
-fn render_template(path: &str, name: &str) -> String {
-    let content = read_to_string(path).expect("Failed to read template");
-    content.replace("{{project_name}}", name)
-}
+fn write_template(template_path: &str, output_path: &str, project_name: &str) -> std::io::Result<()> {
+    let file = TEMPLATES_DIR
+        .get_file(template_path)
+        .ok_or_else(|| {
+            std::io::Error::new(
+                std::io::ErrorKind::NotFound,
+                format!("Template not found: {}", template_path),
+            )
+        })?;
 
-fn create_from_template(template_path: &str, output_path: &str, name: &str) -> std::io::Result<()> {
-    let rendered = render_template(template_path, name);
-    write(output_path, rendered)?;
+    let content = file.contents_utf8().ok_or_else(|| {
+        std::io::Error::new(
+            std::io::ErrorKind::InvalidData,
+            format!("Template is not valid UTF-8: {}", template_path),
+        )
+    })?;
+
+    let rendered = content.replace("{{project_name}}", project_name);
+    fs::write(output_path, rendered)?;
+
     Ok(())
 }
