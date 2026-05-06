@@ -10,7 +10,7 @@ fn init_git(project_path: &str) -> std::io::Result<()> {
 }
 
 fn install_dependencies(project_path: &str) -> std::io::Result<()> {
-    run_command("npm", &["install"], project_path)?;
+    run_command("npm", &["install", "express", "nodemon"], project_path)?;
     Ok(())
 }
 
