@@ -6,23 +6,34 @@ static TEMPLATES_DIR: Dir<'_> = include_dir!("templates");
 const EXPRESS_PACKAGE_JSON: &str = "express/package.json";
 const EXPRESS_GITIGNORE: &str = "express/gitignore";
 const EXPRESS_INDEX_JS: &str = "express/index.js";
+const EXPRESS_README: &str = "express/README.md";
 
 pub fn generate_all(project_name: &str) -> std::io::Result<()> {
+    // Generate package.json
     create_template(
         EXPRESS_PACKAGE_JSON,
         &format!("{}/package.json", project_name),
         project_name,
     )?;
 
+    // Generate src/index.js
     create_template(
         EXPRESS_INDEX_JS,
         &format!("{}/src/index.js", project_name),
         project_name,
     )?;
 
+    // Generate .gitignore
     create_template(
         EXPRESS_GITIGNORE,
         &format!("{}/.gitignore", project_name),
+        project_name,
+    )?;
+
+    // Generate README.md
+    create_template(
+        EXPRESS_README,
+        &format!("{}/README.md", project_name),
         project_name,
     )?;
 
