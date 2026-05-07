@@ -1,8 +1,9 @@
 use crate::project_brahma::commands::run_command;
-use crate::project_brahma::template_router::apply_template;
+
+const COMMAND: &str = "git";
+const ARGS: &[&str] = &["init"];
 
 pub fn init_git(project_name: &str) -> std::io::Result<()> {
-    run_command("git", &["init"], project_name)?;
-    apply_template("None", project_name)?;
+    run_command(COMMAND, ARGS, project_name)?;
     Ok(())
 }

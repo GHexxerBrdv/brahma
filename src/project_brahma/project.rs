@@ -1,4 +1,3 @@
-use crate::project_brahma::commands::run_command;
 use crate::project_brahma::template_router::{apply_template, install_dependencies};
 use crate::project_brahma::template_selector::select_template;
 
@@ -18,7 +17,6 @@ pub fn create_project(name: &str, template: bool) -> std::io::Result<()> {
         if let Some(template_name) = template {
             apply_template(&template_name, name)?;
             install_dependencies(&template_name, name)?;
-            run_command("npm", &["run", "dev"], name)?;
         }
     } else {
         apply_template("None", name)?;
