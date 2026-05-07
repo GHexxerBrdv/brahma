@@ -52,7 +52,7 @@ cargo install --git https://github.com/GHexxerBrdv/brahma.git
 To create a basic project with a `.gitignore`, `README.md`, and an initialized Git repository:
 
 ```bash
-brahma new my-cool-project
+brahma create my-cool-project
 ```
 
 ### Create a Project with a Template
@@ -60,13 +60,13 @@ brahma new my-cool-project
 To create a project using a template (e.g., Express.js):
 
 ```bash
-brahma new my-web-app --template
+brahma create my-web-app --template
 ```
 
 Or using the short flag:
 
 ```bash
-brahma new my-web-app -t
+brahma create my-web-app -t
 ```
 
 Brahma will prompt you to select a template from the available options.

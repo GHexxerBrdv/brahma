@@ -2,7 +2,7 @@ use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
 #[command(name = "brahma")]
-#[command(about = "Project scaffolder", long_about = None)]
+#[command(about = "project scaffolder", long_about = None)]
 pub struct Cli {
     #[command(subcommand)]
     pub commands: Commands,
@@ -11,9 +11,11 @@ pub struct Cli {
 #[derive(Subcommand)]
 pub enum Commands {
     Create {
+        #[arg(help = "name of the project")]
         name: String,
 
         #[arg(long, short)]
+        #[arg(help = "create a well structured and professional project using a predefined template")]
         template: bool,
     },
 }
