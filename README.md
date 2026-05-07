@@ -1,29 +1,53 @@
-# Brahma 🕉️
+<p align="center">
+  <img src="assets/brahma.webp" alt="Brahma Logo" width="200" />
+</p>
 
-Brahma is a lightweight and powerful project scaffolder written in Rust. It helps you quickly bootstrap new projects with sensible defaults or pre-defined templates.
+<h1 align="center">Brahma 🕉️</h1>
 
-## Features
+<p align="center">
+  <strong>A lightweight and powerful project scaffolder for the modern developer.</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" alt="Rust" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="License" />
+</p>
+
+---
+
+Brahma is designed to help you quickly bootstrap new projects with sensible defaults or pre-defined templates. No more wasting time on repetitive boilerplate setup.
+
+## ✨ Features
 
 - 🚀 **Fast Scaffolding**: Create a new project in seconds.
 - 📦 **Template Support**: Bootstrap projects with specific stacks (e.g., Express.js).
 - 🛠️ **Automatic Setup**: Initializes Git and installs dependencies automatically.
 - 💻 **CLI First**: Simple and intuitive command-line interface.
+- 🏗️ **Robust Logic**: Handles directory creation and template rendering flawlessly.
 
 ## Installation
 
 To build Brahma from source, ensure you have [Rust](https://www.rust-lang.org/) installed, then:
 
 ```bash
-git clone https://github.com/yourusername/brahma.git
+git clone https://github.com/GHexxerBrdv/brahma.git
 cd brahma
 cargo build --release
 ```
 
 The binary will be available at `target/release/brahma`.
 
+Or you can install it globally using `cargo install`:
+
+```bash
+cargo install --git https://github.com/GHexxerBrdv/brahma.git
+```
+
+> Note: as per the initial version of tool everytime you have to manually run the above command to support new version.
+
 ## Usage
 
-### Create a Basic Project
+### 🏗️ Create a Basic Project
 
 To create a basic project with a `.gitignore`, `README.md`, and an initialized Git repository:
 
@@ -31,7 +55,7 @@ To create a basic project with a `.gitignore`, `README.md`, and an initialized G
 brahma new my-cool-project
 ```
 
-### Create a Project with a Template
+### 📦 Create a Project with a Template
 
 To create a project using a template (e.g., Express.js):
 
@@ -47,7 +71,7 @@ brahma new my-web-app -t
 
 Brahma will prompt you to select a template from the available options.
 
-#### Example Output:
+#### 📝 Example Output:
 
 ```text
 $ brahma new my-web-app -t
@@ -68,23 +92,25 @@ Server is running on port 3000
 Project my-web-app created
 ```
 
-## Available Templates
+## 📋 Available Templates
 
 | Template | Description | Included Features |
 | :--- | :--- | :--- |
 | **None** | Basic project structure | Git init, .gitignore, README.md |
 | **Express** | Node.js Express server | package.json, src/index.js, npm install, dev script |
 
-## Project Structure
+## 📂 Project Structure
 
-Brahma organizes its source code as follows:
+Brahma is built with modularity in mind:
 
-- `src/main.rs`: Entry point and CLI parsing.
-- `src/cli.rs`: CLI command definitions using `clap`.
-- `src/project_brahma/`: Core logic for project generation.
-  - `project.rs`: Main project creation workflow.
-  - `template_router.rs`: Routes requests to specific template generators.
-  - `template_selector.rs`: Interactive template selection.
-  - `template_brahma/`: Individual template implementations.
-- `templates/`: Static assets for templates (embedded in the binary).
+```text
+src/
+├── main.rs                 # Entry point and CLI parsing
+├── cli.rs                  # CLI command definitions
+└── project_brahma/         # Core logic
+    ├── project.rs          # Workflow management
+    ├── template_router.rs  # Template routing
+    ├── template_selector.rs # Interactive UI
+    └── template_brahma/    # Implementations
+```
 
