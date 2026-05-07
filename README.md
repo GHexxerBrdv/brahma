@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/brahma.webp" alt="Brahma Logo" width="200" />
+  <img src="assets/brahma.png" alt="Brahma Logo" width="200" />
 </p>
 
 <h1 align="center">Brahma 🕉️</h1>
