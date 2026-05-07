@@ -38,6 +38,7 @@ pub fn create_template(
 
 pub fn install_dependencies(template_name: &str, project_name: &str) -> std::io::Result<()> {
     if template_name == "express" {
+        println!("> Installing express dependencies...");
         install_express_dependencies(project_name)?
     }
     Ok(())
@@ -45,8 +46,10 @@ pub fn install_dependencies(template_name: &str, project_name: &str) -> std::io:
 
 pub fn apply_template(template_name: &str, project_name: &str) -> std::io::Result<()> {
     if template_name == "express" {
+        println!("> Creating express project...");
         generate_express(project_name)?;
     } else {
+        println!("> Creating empty project...");
         generate_empty(project_name)?;
     }
     Ok(())

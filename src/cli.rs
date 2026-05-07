@@ -10,7 +10,7 @@ pub struct Cli {
 
 #[derive(Subcommand)]
 pub enum Commands {
-    New {
+    Create {
         name: String,
 
         #[arg(long, short)]

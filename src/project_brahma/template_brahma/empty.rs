@@ -5,6 +5,7 @@ const GITIGNORE_TEMPLATE: &str = "empty/gitignore";
 const README_TEMPLATE: &str = "empty/README.md";
 
 pub fn generate_empty(project_name: &str) -> std::io::Result<()> {
+    println!("🔧 Initializing git...");
     init_git(project_name)?;
     create_template(
         GITIGNORE_TEMPLATE,

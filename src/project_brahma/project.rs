@@ -5,6 +5,8 @@ use std::fs::create_dir_all;
 use std::path::Path;
 
 pub fn create_project(name: &str, template: bool) -> std::io::Result<()> {
+    println!("Initializing process...");
+
     let path = Path::new(name);
     if path.exists() {
         println!("Project already exists");

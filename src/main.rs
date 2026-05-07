@@ -9,7 +9,7 @@ fn main() {
     let cli = Cli::parse();
 
     match cli.commands {
-        Commands::New { name, template } => {
+        Commands::Create { name, template } => {
             project_brahma::project::create_project(&name, template).unwrap();
         }
     }
