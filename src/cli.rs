@@ -10,5 +10,10 @@ pub struct Cli {
 
 #[derive(Subcommand)]
 pub enum Commands {
-    New { name: String },
+    New {
+        name: String,
+
+        #[arg(long, short)]
+        template: bool,
+    },
 }

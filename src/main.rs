@@ -1,7 +1,7 @@
 use clap::Parser;
 
 mod cli;
-mod generator;
+mod project_brahma;
 
 use cli::{Cli, Commands};
 
@@ -9,6 +9,8 @@ fn main() {
     let cli = Cli::parse();
 
     match cli.commands {
-        Commands::New { name } => generator::project::create_project(&name).unwrap(),
+        Commands::New { name, template } => {
+            project_brahma::project::create_project(&name, template).unwrap();
+        }
     }
 }
