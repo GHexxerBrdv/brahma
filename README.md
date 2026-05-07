@@ -17,13 +17,13 @@
 
 Brahma is designed to help you quickly bootstrap new projects with sensible defaults or pre-defined templates. No more wasting time on repetitive boilerplate setup.
 
-## ✨ Features
+## Features
 
-- 🚀 **Fast Scaffolding**: Create a new project in seconds.
-- 📦 **Template Support**: Bootstrap projects with specific stacks (e.g., Express.js).
-- 🛠️ **Automatic Setup**: Initializes Git and installs dependencies automatically.
-- 💻 **CLI First**: Simple and intuitive command-line interface.
-- 🏗️ **Robust Logic**: Handles directory creation and template rendering flawlessly.
+- **Fast Scaffolding**: Create a new project in seconds.
+- **Template Support**: Bootstrap projects with specific stacks (e.g., Express.js).
+- **Automatic Setup**: Initializes Git and installs dependencies automatically.
+- **CLI First**: Simple and intuitive command-line interface.
+- **Robust Logic**: Handles directory creation and template rendering flawlessly.
 
 ## Installation
 
@@ -47,7 +47,7 @@ cargo install --git https://github.com/GHexxerBrdv/brahma.git
 
 ## Usage
 
-### 🏗️ Create a Basic Project
+### Create a Basic Project
 
 To create a basic project with a `.gitignore`, `README.md`, and an initialized Git repository:
 
@@ -55,7 +55,7 @@ To create a basic project with a `.gitignore`, `README.md`, and an initialized G
 brahma new my-cool-project
 ```
 
-### 📦 Create a Project with a Template
+### Create a Project with a Template
 
 To create a project using a template (e.g., Express.js):
 
@@ -71,7 +71,7 @@ brahma new my-web-app -t
 
 Brahma will prompt you to select a template from the available options.
 
-#### 📝 Example Output:
+#### Example Output:
 
 ```text
 $ brahma new my-web-app -t
@@ -92,14 +92,14 @@ Server is running on port 3000
 Project my-web-app created
 ```
 
-## 📋 Available Templates
+## Available Templates
 
 | Template | Description | Included Features |
 | :--- | :--- | :--- |
 | **None** | Basic project structure | Git init, .gitignore, README.md |
 | **Express** | Node.js Express server | package.json, src/index.js, npm install, dev script |
 
-## 📂 Project Structure
+## Project Structure
 
 Brahma is built with modularity in mind:
 
