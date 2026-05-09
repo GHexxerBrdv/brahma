@@ -1,27 +1,26 @@
-use crate::project_brahma::template_router::{apply_template, install_dependencies};
-use crate::project_brahma::template_selector::select_template;
-
+use super::template_router::{install_dependencies, route_template};
+use super::template_selector::select_template;
+use crate::errors::{BrahmaError, Context, Result};
 use std::fs::create_dir_all;
 use std::path::Path;
 
-pub fn create_project(name: &str, template: bool) -> std::io::Result<()> {
+pub fn create_project(name: &str, template: bool) -> Result<()> {
     println!("Initializing process...");
 
     let path = Path::new(name);
     if path.exists() {
-        println!("Project already exists");
-        return Ok(());
+        return Err(BrahmaError::ProjectAlreadyExists.into());
     }
 
     create_dir_all(path)?;
     if template {
         let template = select_template();
         if let Some(template_name) = template {
-            apply_template(&template_name, name)?;
-            install_dependencies(&template_name, name)?;
+            route_template(&template_name, name).context("Failed")?;
+            install_dependencies(&template_name, name).context("Failed install dependencies")?;
         }
     } else {
-        apply_template("None", name)?;
+        route_template("Empty", name).context("Failed")?;
     }
     println!("Project {} created", name);
     Ok(())

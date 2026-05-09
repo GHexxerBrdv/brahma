@@ -1,0 +1,36 @@
+pub const EXPRESS_PACKAGE_JSON: &str = "express/package.json";
+pub const EXPRESS_GITIGNORE: &str = "express/gitignore";
+pub const EXPRESS_README: &str = "express/README.md";
+pub const EXPRESS_ENV: &str = "express/.env";
+pub const EXPRESS_APP_JS: &str = "express/src/app.js";
+pub const EXPRESS_SERVER_JS: &str = "express/src/server.js";
+pub const EXPRESS_DB_JS: &str = "express/src/config/db.js";
+pub const EXPRESS_USER_CONTROLLER: &str = "express/src/controllers/user.controller.js";
+pub const EXPRESS_ERROR_MIDDLEWARE: &str = "express/src/middlewares/error.middleware.js";
+pub const EXPRESS_USER_MODEL: &str = "express/src/models/user.model.js";
+pub const EXPRESS_USER_ROUTES: &str = "express/src/routes/user.routes.js";
+pub const EXPRESS_USER_SERVICE: &str = "express/src/services/user.service.js";
+pub const EXPRESS_API_RESPONSE: &str = "express/src/utils/apiResponce.js";
+
+pub const NPM: &str = "npm";
+pub const INSTALL: &str = "install";
+pub const EXPRESS: &str = "express";
+pub const NODMON: &str = "nodemon";
+pub const DOTENV: &str = "dotenv";
+pub const MONGOOSE: &str = "mongoose";
+pub const CORS: &str = "cors";
+pub const MORGAN: &str = "morgan";
+
+// pub const OUTPUT_PACKAGE_JSON: &str = "{}/package.json";
+// pub const OUTPUT_GITIGNORE: &str = "{}/.gitignore";
+// pub const OUTPUT_README: &str = "{}/README.md";
+// pub const OUTPUT_ENV: &str = "{}/.env";
+// pub const OUTPUT_APP_JS: &str = "{}/src/app.js";
+// pub const OUTPUT_SERVER_JS: &str = "{}/src/server.js";
+// pub const OUTPUT_DB_JS: &str = "{}/src/config/db.js";
+// pub const OUTPUT_USER_CONTROLLER: &str = "{}/src/controllers/user.controller.js";
+// pub const OUTPUT_ERROR_MIDDLEWARE: &str = "{}/src/middlewares/error.middleware.js";
+// pub const OUTPUT_USER_MODEL: &str = "{}/src/models/user.model.js";
+// pub const OUTPUT_USER_ROUTES: &str = "{}/src/routes/user.routes.js";
+// pub const OUTPUT_USER_SERVICE: &str = "{}/src/services/user.service.js";
+// pub const OUTPUT_API_RESPONSE: &str = "{}/src/utils/apiResponce.js";
