@@ -1,8 +1,8 @@
 use super::constants::*;
 use crate::errors::{Context, Result};
 use crate::project_brahma::commands::run_command;
-use crate::project_brahma::template_brahma::git::init_git;
-use crate::project_brahma::template_creator::create_templates;
+use crate::project_brahma::project_template_brahma::git::init_git;
+use crate::project_brahma::template_brahma::template_creator::create_templates;
 
 pub fn install_express_dependencies(project_name: &str) -> Result<()> {
     run_command(

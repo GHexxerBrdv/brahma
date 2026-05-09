@@ -1,5 +1,6 @@
-use super::template_router::{install_dependencies, route_template};
-use super::template_selector::select_template;
+use super::template_brahma::template_router::{install_dependencies, route_template};
+use super::template_brahma::template_selector::select_template;
+use super::template_brahma::types::ProjectType;
 use crate::errors::{BrahmaError, Context, Result};
 use std::fs::create_dir_all;
 use std::path::Path;
@@ -13,15 +14,17 @@ pub fn create_project(name: &str, template: bool) -> Result<()> {
     }
 
     create_dir_all(path)?;
-    if template {
-        let template = select_template();
-        if let Some(template_name) = template {
-            route_template(&template_name, name).context("Failed")?;
-            install_dependencies(&template_name, name).context("Failed install dependencies")?;
-        }
+
+    let project_type = if template {
+        select_template()?
     } else {
-        route_template("Empty", name).context("Failed")?;
-    }
-    println!("Project {} created", name);
+        ProjectType::Empty
+    };
+
+    let template_str = project_type.as_str();
+    route_template(template_str, name).context("Failed to route template")?;
+    install_dependencies(template_str, name).context("Failed to install dependencies")?;
+
+    println!("Project {} created successfully!", name);
     Ok(())
 }
