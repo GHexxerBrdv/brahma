@@ -43,7 +43,7 @@ Or you can install it globally using `cargo install`:
 cargo install --git https://github.com/GHexxerBrdv/brahma.git
 ```
 
-> Note: as per the initial version of tool everytime you have to manually run the above command to support new version.
+> Note: as per the initial version of tool you have to manually run the above command to support new version everytime. we are pllanning to publish a package soon such that user can easily update to the latest version.
 
 ## Usage
 
@@ -52,7 +52,7 @@ cargo install --git https://github.com/GHexxerBrdv/brahma.git
 To create a basic project with a `.gitignore`, `README.md`, and an initialized Git repository:
 
 ```bash
-brahma create my-cool-project
+brahma create project-name
 ```
 
 ### Create a Project with a Template
@@ -69,48 +69,12 @@ Or using the short flag:
 brahma create my-web-app -t
 ```
 
-Brahma will prompt you to select a template from the available options.
-
-#### Example Output:
-
-```text
-$ brahma new my-web-app -t
-? Select the project template ›
-❯ Express
-
-✔ Select the project template · express
-[Brahma] Applying template: express...
-[Brahma] Installing dependencies (express, nodemon)...
-[Brahma] Running 'npm run dev'...
-
-> my-web-app@1.0.0 dev
-> nodemon src/index.js
-
-[nodemon] 3.1.0
-[nodemon] starting `node src/index.js`
-Server is running on port 3000
-Project my-web-app created
-```
+Brahma will prompt you to select a project from the available options.
 
 ## Available Templates
 
 | Template | Description | Included Features |
 | :--- | :--- | :--- |
-| **None** | Basic project structure | Git init, .gitignore, README.md |
-| **Express** | Node.js Express server | package.json, src/index.js, npm install, dev script |
-
-## Project Structure
-
-Brahma is built with modularity in mind:
-
-```text
-src/
-├── main.rs                 # Entry point and CLI parsing
-├── cli.rs                  # CLI command definitions
-└── project_brahma/         # Core logic
-    ├── project.rs          # Workflow management
-    ├── template_router.rs  # Template routing
-    ├── template_selector.rs # Interactive UI
-    └── template_brahma/    # Implementations
-```
-
+| **Empty** | Basic project structure | Git init, .gitignore, README.md |
+| **Express (JS)** | Node.js Express server (JavaScript) | MVC structure, package.json, src/app.js, dev script |
+| **Express (TS)** | Node.js Express server (TypeScript) | MVC structure, tsconfig.json, src/app.ts, dev script |
