@@ -1,17 +1,17 @@
 use super::constants::*;
 use crate::errors::{Context, Result};
-use crate::project_brahma::commands::run_command;
+use crate::project_brahma::commands::run_command_guarded;
 use crate::project_brahma::project_template_brahma::git::init_git;
 use crate::project_brahma::template_brahma::template_creator::create_templates;
 
 pub fn install_express_ts_dependencies(project_name: &str) -> Result<()> {
-    run_command(
+    run_command_guarded(
         NPM,
         &[INSTALL, EXPRESS, DOTENV, MONGOOSE, CORS, MORGAN],
         project_name,
     )?;
-    
-    run_command(
+
+    run_command_guarded(
         NPM,
         &[
             INSTALL,
@@ -52,7 +52,7 @@ pub fn generate_express_ts(project_name: &str) -> Result<()> {
 
     create_templates(&template_paths, &output_paths, project_name)
         .context("Failed creating express-ts project")?;
-    
+
     init_git(project_name).context("Git initialization failed")?;
 
     Ok(())

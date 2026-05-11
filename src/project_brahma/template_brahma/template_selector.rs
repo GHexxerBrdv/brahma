@@ -13,7 +13,7 @@ fn select_project() -> Result<Projects> {
         .item(HONO_CATEGORY, HONO_LABEL, "Coming soon")
         .item(NEST_CATEGORY, NEST_LABEL, "Coming soon")
         .interact()
-        .map_err(|_| BrahmaError::UserCancelled)?;
+        .map_err(|_| BrahmaError::UserAborted)?;
 
     match project {
         EXPRESS_CATEGORY => Ok(Projects::Express),
@@ -30,7 +30,7 @@ fn select_flavor(project: Projects) -> Result<ProjectFlavors> {
                 .item(EXPRESS_JS_FLAVOR, EXPRESS_JS_LABEL, "Standard JavaScript")
                 .item(EXPRESS_TS_FLAVOR, EXPRESS_TS_LABEL, "TypeScript support")
                 .interact()
-                .map_err(|_| BrahmaError::UserCancelled)?;
+                .map_err(|_| BrahmaError::UserAborted)?;
 
             match flavor {
                 EXPRESS_JS_FLAVOR => Ok(ProjectFlavors::ExpressJs),

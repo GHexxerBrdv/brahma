@@ -9,6 +9,10 @@ pub enum BrahmaError {
     CommandFailed,
     #[error("Invalid project paths")]
     InvalidProjectPaths,
-    #[error("User cancelled")]
-    UserCancelled,
+    #[error("User aborted")]
+    UserAborted,
+    #[error("Install failed")]
+    InstallFailed(String),
+    #[error("Dependency missing")]
+    DependencyMissing(String),
 }

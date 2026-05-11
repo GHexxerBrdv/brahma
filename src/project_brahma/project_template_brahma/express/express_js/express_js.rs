@@ -1,11 +1,11 @@
 use super::constants::*;
 use crate::errors::{Context, Result};
-use crate::project_brahma::commands::run_command;
+use crate::project_brahma::commands::run_command_guarded;
 use crate::project_brahma::project_template_brahma::git::init_git;
 use crate::project_brahma::template_brahma::template_creator::create_templates;
 
 pub fn install_express_js_dependencies(project_name: &str) -> Result<()> {
-    run_command(
+    run_command_guarded(
         NPM,
         &[INSTALL, EXPRESS, NODMON, DOTENV, MONGOOSE, CORS, MORGAN],
         project_name,

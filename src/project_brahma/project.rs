@@ -18,23 +18,20 @@ pub fn create_project(name: &str, template: bool) -> Result<()> {
     };
 
     let spinner = cliclack::spinner();
-    
+
     spinner.start("Initializing process...");
 
     create_dir_all(path).context("Failed to create project directory")?;
 
     let template_str = project_type.as_str();
     route_template(template_str, name).context("Failed to route template")?;
-    
+
     spinner.set_message("Installing dependencies...");
     install_dependencies(template_str, name).context("Failed to install dependencies")?;
 
     spinner.stop(format!("Project {} created successfully!", name));
 
-    cliclack::note(
-        "Next steps",
-        format!("cd {}\nnpm run dev", name),
-    )?;
+    cliclack::note("Next steps", format!("cd {}\nnpm run dev", name))?;
 
     Ok(())
 }
