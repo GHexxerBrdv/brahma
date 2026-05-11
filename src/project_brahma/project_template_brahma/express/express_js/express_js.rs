@@ -48,7 +48,6 @@ pub fn generate_express_js(project_name: &str) -> Result<()> {
     create_templates(&template_paths, &output_paths, project_name)
         .context("Failed creating express project")?;
 
-    println!("> Initializing git...");
     init_git(project_name).context("Git initialization failed")?;
 
     Ok(())

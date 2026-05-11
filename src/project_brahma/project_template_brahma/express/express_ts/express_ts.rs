@@ -5,14 +5,12 @@ use crate::project_brahma::project_template_brahma::git::init_git;
 use crate::project_brahma::template_brahma::template_creator::create_templates;
 
 pub fn install_express_ts_dependencies(project_name: &str) -> Result<()> {
-    println!("> Installing core dependencies...");
     run_command(
         NPM,
         &[INSTALL, EXPRESS, DOTENV, MONGOOSE, CORS, MORGAN],
         project_name,
     )?;
-
-    println!("> Installing dev dependencies...");
+    
     run_command(
         NPM,
         &[
@@ -54,8 +52,7 @@ pub fn generate_express_ts(project_name: &str) -> Result<()> {
 
     create_templates(&template_paths, &output_paths, project_name)
         .context("Failed creating express-ts project")?;
-
-    println!("> Initializing git...");
+    
     init_git(project_name).context("Git initialization failed")?;
 
     Ok(())
