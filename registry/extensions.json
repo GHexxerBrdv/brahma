@@ -1,0 +1,14 @@
+{
+  "extensions": [
+    {
+      "id": "@brahma/express",
+      "status": "verified",
+      "path": "extensions/express"
+    },
+    {
+      "id": "@brahma/nest",
+      "status": "draft",
+      "path": "extensions/nest"
+    }
+  ]
+}

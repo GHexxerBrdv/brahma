@@ -1,0 +1,7 @@
+id: "@brahma/express"
+name: "Express Extension"
+apiVersion: "v1"
+engineVersionRange: ">=0.0.1"
+capabilities:
+  - init
+  - doctor

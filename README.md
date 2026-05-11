@@ -15,7 +15,7 @@
 
 ---
 
-Brahma is designed to help you quickly bootstrap new projects with sensible defaults or pre-defined templates. No more wasting time on repetitive boilerplate setup.
+Brahma is designed to help you quickly bootstrap backend projects with sensible defaults and pre-defined templates. No more wasting time on repetitive boilerplate setup.
 
 ## Features
 
@@ -78,3 +78,18 @@ Brahma will prompt you to select a project from the available options.
 | **Empty** | Basic project structure | Git init, .gitignore, README.md |
 | **Express (JS)** | Node.js Express server (JavaScript) | MVC structure, package.json, src/app.js, dev script |
 | **Express (TS)** | Node.js Express server (TypeScript) | MVC structure, tsconfig.json, src/app.ts, dev script |
+
+## Repository Structure
+
+```txt
+apps/cli/              # Installable CLI binary
+packages/core/         # Core engine and template orchestration
+packages/extension-sdk/# Shared extension contracts (WIP)
+packages/ai/           # Optional AI module (WIP)
+extensions/            # Framework extensions and their templates
+templates/shared/      # Shared template building blocks
+docs/                  # Architecture, commands, extension API docs
+tests/                 # Integration/e2e test scaffolding
+policies/              # Security and template quality baselines
+registry/              # Extension registry metadata
+```

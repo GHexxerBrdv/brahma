@@ -1,0 +1,6 @@
+id: "@brahma/nest"
+name: "NestJS Extension"
+apiVersion: "v1"
+engineVersionRange: ">=0.0.1"
+capabilities:
+  - init

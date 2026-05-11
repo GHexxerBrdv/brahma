@@ -1,0 +1,6 @@
+version: 1
+checks:
+  - builds_cleanly
+  - has_readme
+  - has_test_setup
+  - has_error_handling
