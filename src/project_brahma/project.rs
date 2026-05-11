@@ -31,7 +31,5 @@ pub fn create_project(name: &str, template: bool) -> Result<()> {
 
     spinner.stop(format!("Project {} created successfully!", name));
 
-    cliclack::note("Next steps", format!("cd {}\nnpm run dev", name))?;
-
     Ok(())
 }

@@ -3,7 +3,6 @@ use cliclack::{confirm, note};
 use std::process::{Command, Stdio};
 
 pub fn run_command_guarded(cmd: &str, args: &[&str], dir: &str) -> Result<()> {
-
     if !is_installed(cmd) {
         install_binary(cmd)?
     }
@@ -17,7 +16,7 @@ fn execute_command(cmd: &str, args: &[&str], dir: Option<&str>) -> Result<()> {
     command
         .args(args)
         .stdout(Stdio::null())
-        .stderr(Stdio::null());
+        .stderr(Stdio::inherit()); // can make it non to hide warnings and errors
 
     if let Some(dir) = dir {
         command.current_dir(dir);
@@ -47,7 +46,7 @@ fn install_binary(binary: &str) -> Result<()> {
 
     spinner.start(format!("Installing {}...", binary));
 
-    match execute_command(cmd, args, None) {
+    match execute_command(cmd, &args, None) {
         Ok(_) => {
             spinner.stop(format!("{binary} installed successfully"));
             Ok(())
@@ -59,10 +58,43 @@ fn install_binary(binary: &str) -> Result<()> {
     }
 }
 
-fn get_install_command(binary: &str) -> Option<(&'static str, &'static [&'static str])> {
+fn get_install_command(binary: &str) -> Option<(&'static str, Vec<&'static str>)> {
+    platform_install_command(binary)
+}
+
+#[cfg(target_os = "linux")]
+fn platform_install_command(binary: &str) -> Option<(&'static str, Vec<&'static str>)> {
     match binary {
-        "git" => Some(("sudo", &["dnf", "install", "-y", "git"])),
+        "git" => install_linux_binary("git"),
         _ => None,
+    }
+}
+
+#[cfg(target_os = "macos")]
+fn platform_install_command(binary: &str) -> Option<(&'static str, Vec<&'static str>)> {
+    if !is_installed("brew") {
+        return None;
+    }
+    match binary {
+        "git" => Some(("brew", vec!["install", "git"])),
+        _ => None,
+    }
+}
+
+#[cfg(target_os = "linux")]
+fn install_linux_binary(package: &'static str) -> Option<(&'static str, Vec<&'static str>)> {
+    if is_installed("apt") {
+        Some(("sudo", vec!["apt", "install", "-y", package]))
+    } else if is_installed("dnf") {
+        Some(("sudo", vec!["dnf", "install", "-y", package]))
+    } else if is_installed("yum") {
+        Some(("sudo", vec!["yum", "install", "-y", package]))
+    } else if is_installed("pacman") {
+        Some(("sudo", vec!["pacman", "-S", "--noconfirm", package]))
+    } else if is_installed("zypper") {
+        Some(("sudo", vec!["zypper", "install", "-y", package]))
+    } else {
+        None
     }
 }
 

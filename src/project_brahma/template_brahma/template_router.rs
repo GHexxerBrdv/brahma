@@ -10,11 +10,18 @@ use crate::project_brahma::project_template_brahma::express::express_ts::express
 
 pub fn install_dependencies(template: &str, project: &str) -> Result<()> {
     match template {
-        EXPRESS_JS_FLAVOR => install_express_js_dependencies(project)
-            .context("Installing express dependencies failed")?,
-        EXPRESS_TS_FLAVOR => install_express_ts_dependencies(project)
-            .context("Installing express-ts dependencies failed")?,
+        EXPRESS_JS_FLAVOR => {
+            install_express_js_dependencies(project)
+                .context("Installing express dependencies failed")?;
 
+            cliclack::note("Next steps", format!("cd {}\nnpm run dev", project))?;
+        }
+        EXPRESS_TS_FLAVOR => {
+            install_express_ts_dependencies(project)
+                .context("Installing express-ts dependencies failed")?;
+
+            cliclack::note("Next steps", format!("cd {}\nnpm run dev", project))?;
+        }
         _ => unreachable!(),
     }
     Ok(())
