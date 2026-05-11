@@ -9,6 +9,6 @@ pub enum BrahmaError {
     CommandFailed,
     #[error("Invalid project paths")]
     InvalidProjectPaths,
-    #[error("Selection cancelled by user")]
+    #[error("User cancelled")]
     UserCancelled,
 }

@@ -11,19 +11,29 @@ pub fn create_project(name: &str, template: bool) -> Result<()> {
         return Err(BrahmaError::ProjectAlreadyExists.into());
     }
 
-    create_dir_all(path).context("Failed to create directory")?;
-
-    let project_flavor = if template {
+    let project_type = if template {
         select_template().context("Failed to select template")?
     } else {
         ProjectFlavors::None
     };
 
-    let project = project_flavor.as_str();
-    route_template(project, name).context("Failed to route template")?;
-    install_dependencies(project, name).context("Failed to install dependencies")?;
+    let spinner = cliclack::spinner();
+    spinner.start("Initializing process...");
 
-    println!("Project {} created successfully!", name);
+    create_dir_all(path).context("Failed to create project directory")?;
+
+    let template_str = project_type.as_str();
+    route_template(template_str, name).context("Failed to route template")?;
+    spinner.set_message("Installing dependencies...");
+    install_dependencies(template_str, name).context("Failed to install dependencies")?;
+
+    spinner.stop(format!("Project {} created successfully!", name));
+
+    cliclack::note(
+        "Next steps",
+        format!("cd {}\nnpm install\nnpm run dev", name),
+    )
+    .context("Failed to display next steps")?;
 
     Ok(())
 }

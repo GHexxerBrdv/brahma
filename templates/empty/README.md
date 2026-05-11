@@ -3,6 +3,7 @@
 An empty starter project created with **Brahma**.
 
 ## 📂 Project Structure
+- `/src` - folder structure to work in.
 - `.gitignore` - Standard node.js git exclusions.
 - `README.md` - Readme file
 

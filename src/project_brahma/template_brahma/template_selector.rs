@@ -1,57 +1,44 @@
 use super::constants::*;
 use super::types::{ProjectFlavors, Projects};
-use crate::errors::{BrahmaError, Result};
-use anyhow::Context;
+use crate::errors::{BrahmaError, Context, Result};
 use cliclack::select;
 
 fn select_project() -> Result<Projects> {
-    let project: String = select("Select the project")
+    let project: &str = select("Select the project")
         .item(
             EXPRESS_CATEGORY,
-            EXPRESS_LABLE,
+            EXPRESS_LABEL,
             "Fast, unopinionated, minimalist web framework",
         )
-        .item(HONO_CATEGORY, HONO_LABLE, "Coming soon")
-        .item(NEST_CATEGORY, NEST_LABLE, "Coming soon")
+        .item(HONO_CATEGORY, HONO_LABEL, "Coming soon")
+        .item(NEST_CATEGORY, NEST_LABEL, "Coming soon")
         .interact()
-        .ok()
-        .unwrap()
-        .to_string();
+        .map_err(|_| BrahmaError::UserCancelled)?;
 
-    match project.as_str() {
-        EXPRESS_CATEGORY => return Ok(Projects::Express),
-        HONO_CATEGORY => return Ok(Projects::Hono),
-        NEST_CATEGORY => return Ok(Projects::Nest),
-        _ => return Ok(Projects::Empty),
+    match project {
+        EXPRESS_CATEGORY => Ok(Projects::Express),
+        HONO_CATEGORY => Ok(Projects::Hono),
+        NEST_CATEGORY => Ok(Projects::Nest),
+        _ => unreachable!(),
     }
 }
 
 fn select_flavor(project: Projects) -> Result<ProjectFlavors> {
     match project {
         Projects::Express => {
-            let flavor: String = select("Select express flavor")
-                .item(EXPRESS_JS_FLAVOR, EXPRESS_JS_LABLE, "Standard JavaScript")
-                .item(EXPRESS_TS_FLAVOR, EXPRESS_TS_LABLE, "TypeScript support")
+            let flavor: &str = select("Select express flavor")
+                .item(EXPRESS_JS_FLAVOR, EXPRESS_JS_LABEL, "Standard JavaScript")
+                .item(EXPRESS_TS_FLAVOR, EXPRESS_TS_LABEL, "TypeScript support")
                 .interact()
-                .ok()
-                .unwrap()
-                .to_string();
+                .map_err(|_| BrahmaError::UserCancelled)?;
 
-            return match flavor.as_str() {
+            match flavor {
                 EXPRESS_JS_FLAVOR => Ok(ProjectFlavors::ExpressJs),
                 EXPRESS_TS_FLAVOR => Ok(ProjectFlavors::ExpressTs),
                 _ => unreachable!(),
-            };
+            }
         }
-        Projects::Hono => {
-            println!("{HONO_LABLE} Coming soon");
-            return Ok(ProjectFlavors::None);
-        }
-        Projects::Nest => {
-            println!("{NEST_LABLE} Coming soon");
-            return Ok(ProjectFlavors::None);
-        }
-        Projects::Empty => return Ok(ProjectFlavors::None),
+        _ => unreachable!(),
     }
 }
 
