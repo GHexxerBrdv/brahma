@@ -1,6 +1,7 @@
 use crate::errors::{BrahmaError, Context, Result};
-use cliclack::{confirm, note};
+use cliclack::{confirm, note, spinner};
 use std::process::{Command, Stdio};
+use which::which;
 
 pub fn run_command_guarded(cmd: &str, args: &[&str], dir: &str) -> Result<()> {
     if !is_installed(cmd) {
@@ -16,7 +17,7 @@ fn execute_command(cmd: &str, args: &[&str], dir: Option<&str>) -> Result<()> {
     command
         .args(args)
         .stdout(Stdio::null())
-        .stderr(Stdio::inherit()); // can make it non to hide warnings and errors
+        .stderr(Stdio::inherit()); // can make it inherit to hide warnings and errors
 
     if let Some(dir) = dir {
         command.current_dir(dir);
@@ -31,7 +32,7 @@ fn execute_command(cmd: &str, args: &[&str], dir: Option<&str>) -> Result<()> {
 }
 
 fn is_installed(binary: &str) -> bool {
-    which::which(binary).is_ok()
+    which(binary).is_ok()
 }
 
 fn install_binary(binary: &str) -> Result<()> {
@@ -42,7 +43,7 @@ fn install_binary(binary: &str) -> Result<()> {
     let (cmd, args) =
         get_install_command(binary).ok_or_else(|| BrahmaError::DependencyMissing(binary.into()))?;
 
-    let spinner = cliclack::spinner();
+    let spinner = spinner();
 
     spinner.start(format!("Installing {}...", binary));
 

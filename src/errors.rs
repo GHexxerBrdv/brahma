@@ -7,8 +7,8 @@ pub enum BrahmaError {
     ProjectAlreadyExists,
     #[error("Command failed")]
     CommandFailed,
-    #[error("Invalid project paths")]
-    InvalidProjectPaths,
+    // #[error("Invalid project paths")]
+    // InvalidProjectPaths,
     #[error("User aborted")]
     UserAborted,
     #[error("Install failed")]

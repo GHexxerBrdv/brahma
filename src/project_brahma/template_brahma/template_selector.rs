@@ -28,13 +28,25 @@ fn select_flavor(project: Projects) -> Result<ProjectFlavors> {
         Projects::Express => {
             let flavor: &str = select("Select express flavor")
                 .item(EXPRESS_JS_FLAVOR, EXPRESS_JS_LABEL, "Standard JavaScript")
+                .item(
+                    EXPRESS_JS_NO_GIT_FLAVOR,
+                    EXPRESS_JS_NO_GIT_LABEL,
+                    "Standard JavaScript (no git)",
+                )
                 .item(EXPRESS_TS_FLAVOR, EXPRESS_TS_LABEL, "TypeScript support")
+                .item(
+                    EXPRESS_TS_NO_GIT_FLAVOR,
+                    EXPRESS_TS_NO_GIT_LABEL,
+                    "TypeScript support (no git)",
+                )
                 .interact()
                 .map_err(|_| BrahmaError::UserAborted)?;
 
             match flavor {
                 EXPRESS_JS_FLAVOR => Ok(ProjectFlavors::ExpressJs),
+                EXPRESS_JS_NO_GIT_FLAVOR => Ok(ProjectFlavors::ExpressJsNoGit),
                 EXPRESS_TS_FLAVOR => Ok(ProjectFlavors::ExpressTs),
+                EXPRESS_TS_NO_GIT_FLAVOR => Ok(ProjectFlavors::ExpressTsNoGit),
                 _ => unreachable!(),
             }
         }

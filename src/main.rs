@@ -5,12 +5,13 @@ mod errors;
 mod project_brahma;
 
 use cli::{Cli, Commands};
+use cliclack::{intro, outro};
 use errors::Result;
 
 fn main() -> Result<()> {
     let cli = Cli::parse();
 
-    cliclack::intro("Brahma is lightweight project scaffolder tool")?;
+    intro("Brahma is lightweight project scaffolder tool")?;
 
     match cli.commands {
         Commands::Create { name, template } => {
@@ -18,7 +19,7 @@ fn main() -> Result<()> {
         }
     }
 
-    cliclack::outro("Done!")?;
+    outro("Done!")?;
 
     Ok(())
 }

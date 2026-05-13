@@ -1,13 +1,16 @@
+#[derive(Debug, PartialEq)]
 pub enum Projects {
     Express,
     Hono,
     Nest,
 }
-
+#[derive(Debug, PartialEq)]
 pub enum ProjectFlavors {
     None,
     ExpressJs,
+    ExpressJsNoGit,
     ExpressTs,
+    ExpressTsNoGit,
 }
 
 impl ProjectFlavors {
@@ -15,7 +18,9 @@ impl ProjectFlavors {
         match self {
             Self::None => "none",
             Self::ExpressJs => "express-js",
+            Self::ExpressJsNoGit => "express-js-no-git",
             Self::ExpressTs => "express-ts",
+            Self::ExpressTsNoGit => "express-ts-no-git",
         }
     }
 }

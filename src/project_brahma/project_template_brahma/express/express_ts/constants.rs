@@ -1,13 +1,3 @@
-// Express TS
-pub const EXPRESS_TS_PACKAGE_JSON: &str = "express/express_ts/package.json";
-pub const EXPRESS_TS_TSCONFIG: &str = "express/express_ts/tsconfig.json";
-pub const EXPRESS_TS_GITIGNORE: &str = "express/express_ts/gitignore";
-pub const EXPRESS_TS_README: &str = "express/express_ts/README.md";
-pub const EXPRESS_TS_ENV: &str = "express/express_ts/.env";
-pub const EXPRESS_TS_APP: &str = "express/express_ts/src/app.ts";
-pub const EXPRESS_TS_SERVER: &str = "express/express_ts/src/server.ts";
-pub const EXPRESS_TS_DB: &str = "express/express_ts/src/config/db.ts";
-
 pub const NPM: &str = "npm";
 pub const INSTALL: &str = "install";
 pub const EXPRESS: &str = "express";
