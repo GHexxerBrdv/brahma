@@ -17,45 +17,29 @@ pub fn install_dependencies(template: &str, project: &str) -> Result<()> {
 
             note("Next steps", format!("cd {}\nnpm run dev", project))?;
         }
-        EXPRESS_JS_NO_GIT_FLAVOR => {
-            install_express_js_dependencies(project)
-                .context("Installing express dependencies failed")?;
 
-            note("Next steps", format!("cd {}\nnpm run dev", project))?;
-        }
         EXPRESS_TS_FLAVOR => {
             install_express_ts_dependencies(project)
                 .context("Installing express-ts dependencies failed")?;
 
             note("Next steps", format!("cd {}\nnpm run dev", project))?;
         }
-        EXPRESS_TS_NO_GIT_FLAVOR => {
-            install_express_ts_dependencies(project)
-                .context("Installing express-ts dependencies failed")?;
 
-            note("Next steps", format!("cd {}\nnpm run dev", project))?;
-        }
         _ => unreachable!(),
     }
     Ok(())
 }
 
-pub fn route_template(template: &str, project: &str) -> Result<()> {
+pub fn route_template(template: &str, project: &str, git: bool) -> Result<()> {
     match template {
         NONE => {
-            generate_empty(project).context("Failed to create empty project")?;
+            generate_empty(project, git).context("Failed to create empty project")?;
         }
         EXPRESS_JS_FLAVOR => {
-            generate_express_js(project, true).context("Failed to generate express project")?;
-        }
-        EXPRESS_JS_NO_GIT_FLAVOR => {
-            generate_express_js(project, false).context("Failed to generate express project")?;
+            generate_express_js(project, git).context("Failed to generate express project")?;
         }
         EXPRESS_TS_FLAVOR => {
-            generate_express_ts(project, true).context("Failed to generate express-ts project")?;
-        }
-        EXPRESS_TS_NO_GIT_FLAVOR => {
-            generate_express_ts(project, false).context("Failed to generate express-ts project")?;
+            generate_express_ts(project, git).context("Failed to generate express-ts project")?;
         }
         _ => unreachable!(),
     }

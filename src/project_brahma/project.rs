@@ -11,10 +11,10 @@ pub fn create_project(name: &str, template: bool) -> Result<()> {
         return Err(BrahmaError::ProjectAlreadyExists.into());
     }
 
-    let project_type = if template {
+    let (project_type, git) = if template {
         select_template().context("Failed to select template")?
     } else {
-        ProjectFlavors::None
+        (ProjectFlavors::None, false)
     };
 
     let spinner = spinner();
@@ -24,7 +24,7 @@ pub fn create_project(name: &str, template: bool) -> Result<()> {
     // create_dir_all(path).context("Failed to create project directory")?; //>/issue:- move it to the template creation
 
     let template_str = project_type.as_str();
-    route_template(template_str, name).context("Failed to route template")?;
+    route_template(template_str, name, git).context("Failed to route template")?;
 
     spinner.set_message("Installing dependencies...");
     if project_type != ProjectFlavors::None {
