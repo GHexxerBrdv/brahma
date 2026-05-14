@@ -1,10 +1,10 @@
 use crate::errors::{Context, Result};
-use crate::project_brahma::commands::run_command;
+use crate::project_brahma::commands::run_command_guarded;
 
-const COMMAND: &str = "git";
+const GIT: &str = "git";
 const ARGS: &[&str] = &["init"];
 
 pub fn init_git(project_name: &str) -> Result<()> {
-    run_command(COMMAND, ARGS, project_name).context("Command execution failed")?;
+    run_command_guarded(GIT, ARGS, project_name).context("Command execution failed")?;
     Ok(())
 }

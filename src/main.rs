@@ -4,18 +4,22 @@ mod cli;
 mod errors;
 mod project_brahma;
 
-use errors::Context;
-
 use cli::{Cli, Commands};
+use cliclack::{intro, outro};
+use errors::Result;
 
-fn main() {
+fn main() -> Result<()> {
     let cli = Cli::parse();
+
+    intro("Brahma is lightweight project scaffolder tool")?;
 
     match cli.commands {
         Commands::Create { name, template } => {
-            project_brahma::project::create_project(&name, template)
-                .context("Failed to create project")
-                .unwrap();
+            project_brahma::project::create_project(&name, template)?;
         }
     }
+
+    outro("Done!")?;
+
+    Ok(())
 }

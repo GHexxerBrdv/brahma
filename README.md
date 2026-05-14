@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/brahma.png" alt="Brahma Logo" width="200" />
+  <img src="assets/brahma2.png" alt="Brahma Logo" width="200" />
 </p>
 
 <h1 align="center">Brahma 🕉️</h1>
@@ -76,5 +76,5 @@ Brahma will prompt you to select a project from the available options.
 | Template | Description | Included Features |
 | :--- | :--- | :--- |
 | **Empty** | Basic project structure | Git init, .gitignore, README.md |
-| **Express (JS)** | Node.js Express server (JavaScript) | MVC structure, package.json, src/app.js, dev script |
-| **Express (TS)** | Node.js Express server (TypeScript) | MVC structure, tsconfig.json, src/app.ts, dev script |
+| **Express (JS)** | Node.js Express server (JavaScript) (no-git option is available) | MVC structure, package.json, src/app.js, dev script |
+| **Express (TS)** | Node.js Express server (TypeScript) (no-git option is available) | MVC structure, tsconfig.json, src/app.ts, dev script |
