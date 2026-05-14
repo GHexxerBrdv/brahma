@@ -28,7 +28,7 @@ Brahma is designed to help you quickly bootstrap new projects with sensible defa
 ## Installation
 
 ```bash
-curl -L https://github.com/GHexxerBrdv/brahma/main/install.sh | bash
+curl -L https://raw.githubusercontent.com/GHexxerBrdv/brahma/main/install.sh | bash
 ```
 
 > Note: as per the initial version of tool you have to manually run the above command to support new version everytime. we are pllanning to publish a package soon such that user can easily update to the latest version.
